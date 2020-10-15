@@ -3,10 +3,12 @@
  */
 
 function s5_1(str) {
+  if (str.length % 2 !== 0) return '非法';
+  const left = ['(', '[', '{'];
   const stack = [];
   for (let i = 0; i < str.length; i++) {
     const curr = str.charAt(i);
-    if (isLeft(curr) === 1) {
+    if (left.includes(curr)) {
       stack.push(curr);
     } else {
       if (stack.length === 0) {
@@ -26,14 +28,6 @@ function s5_1(str) {
   }
 }
 
-function isLeft(c) {
-  if (c === '{' || c === '[' || c === '(') {
-    return 1;
-  }
-
-  return 2;
-}
-
 function isPair(p, curr) {
   if ((p === '{' && curr === '}') || (p === '[' && curr === ']') || (p === '(' && curr === ')')) {
     return 1;
@@ -42,6 +36,26 @@ function isPair(p, curr) {
   return 0;
 }
 
-const str = '{[()()]}';
+const str = '{[()([])]}())';
 
 console.log(s5_1(str));
+
+var isValid = function (s) {
+  const left = ['(', '[', '{'];
+  // const right = [')', ']', '}'];
+  const stack = [];
+  for (let i = 0; i < s.length; i++) {
+    const curr = s.charAt(i);
+    if (left.includes(curr)) {
+      stack.push(curr);
+    } else {
+      const p = stack.pop();
+      console.log('p:', p);
+      console.log('curr:', curr);
+      // 符号是相对的不能用=来判断
+      if (curr !== p) return false;
+    }
+  }
+  console.log(stack);
+  return stack.length === 0;
+};
