@@ -31,10 +31,14 @@ componentWillUnmount
 1. 组件在父组件中被移除了
 2. 组件中设置了 key 属性，父组件在 render 过程中发现 key 值和上次不一样，那么组件就会被干掉（React 调和过程）
 
-## shouldComponentUpdate
+- shouldComponentUpdate
 
 ```
 shouldComponentUpdate(nextProps, nextState)
 ```
 
 render 方法由于伴随着对虚拟 dom 的构建和对比，十分耗时，为了避免不必要的 render 操作，提供了 shouldComponentUpdate 方法，React 组件会根据 shouldComponentUpdate 的返回值，来决定是否执行该方法之后的生命周期，其默认值为 true，即无条件 re-render
+
+## 生命周期 React16.3
+
+![react16.3](./life_react16.3.png)
