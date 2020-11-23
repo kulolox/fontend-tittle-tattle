@@ -4,7 +4,7 @@ Function.prototype.bind = function (context) {
   function Fn() {}
   function fBound() {
     let args = [].slice.call(arguments);
-    return that.apply(this instanceof fBind ? this : context, bindArgs.concat(args));
+    return that.apply(this instanceof Fn ? this : context, bindArgs.concat(args));
   }
   Fn.prototype = this.prototype;
   fBound.prototype = new Fn();

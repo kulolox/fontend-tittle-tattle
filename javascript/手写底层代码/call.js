@@ -1,24 +1,31 @@
 Function.prototype.call2 = function (context) {
   // node环境中为global，浏览器为window
   context = context ? Object(context) : global;
+  // 提取绑定函数
   context.fn = this;
+  // 提取传递参数
   let args = [];
   for (let i = 1; i < arguments.length; i++) {
-    args.push(`arguments[${i}]`);
+    args.push('arguments[' + i + ']');
   }
-  let res = eval(`context.fn(${args})`);
+  // 执行函数
+  const result = eval('context.fn(' + args + ')');
+  // 删除函数
   delete context.fn;
-  return res;
+  return result;
 };
 
-function Product(name, price) {
-  this.name = name;
-  this.price = price;
+const obj = {
+  value: 2
+};
+
+function test(name, age) {
+  console.log(this.value);
+  return {
+    value: this.value,
+    name: name,
+    age: age
+  };
 }
 
-function Food(name, price) {
-  Product.call2(this, name, price);
-  this.category = 'food';
-}
-
-console.log(new Food('cheese', 5));
+test.call(obj);

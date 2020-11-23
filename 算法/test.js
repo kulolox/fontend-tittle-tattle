@@ -1,8 +1,7 @@
-function foo(a) {
-  console.log('1:', a);
-
-  var a = 2;
-  console.log('2:', a);
+var value = 1;
+function foo(v) {
+  v = 2;
+  console.log(v); //2
 }
-
-foo(1);
+foo(value);
+console.log(value); // 1

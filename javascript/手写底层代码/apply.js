@@ -1,11 +1,14 @@
 Function.prototype.apply2 = function (context, args) {
   // node环境中为global，浏览器为window
   context = context ? Object(context) : global;
+  // 提取函数
   context.fn = this;
+
   if (!args) {
     return context.fn();
   }
-  let res = eval(`context.fn(${args})`);
+  // 执行函数
+  let res = eval('context.fn(' + args + ')');
   delete context.fn;
   return res;
 };
