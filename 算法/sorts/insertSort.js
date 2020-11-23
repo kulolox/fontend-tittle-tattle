@@ -20,14 +20,14 @@ function insertSort1(arr) {
   let length = arr.length;
   let current;
   for (let i = 1; i < length; i++) {
-    current = arr[i]; // 取出当前值
+    current = arr[i]; // 取出当前值，从1开始是因为默认0为有序列
     let j = i; // j为当前值，并且从后往前遍历
     while (j > 0) {
       // 当前值依次与前一个值进行比较，注意我们设定当前值前面的数组已经有序，则当前值大于前一个值表示找到了需要插入的位置
       if (current >= arr[j - 1]) {
         break;
       }
-      // 当前值被取出了，留下了空位，将排序的数组依次向后移动一位，流出插入位置
+      // 当前值被取出了，留下了空位，将排序的数组依次向后移动一位，留出插入位置
       arr[j] = arr[j - 1];
       j--;
     }

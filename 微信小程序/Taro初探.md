@@ -13,7 +13,7 @@ $ yarn global add @tarojs/cli
 $ cnpm install -g @tarojs/cli
 ```
 
-taro推荐使用taro-ui作为UI库， taro-ui 使用的 sass 预处理语言。由于国内网络限制 node-sass 安装经常出问题。解决方案：
+taro 推荐使用 taro-ui 作为 UI 库， taro-ui 使用的 sass 预处理语言。由于国内网络限制 node-sass 安装经常出问题。解决方案：
 
 ```
 npm install -g mirror-config-china
@@ -94,26 +94,18 @@ function connect(
     areStatePropsEqual = shallowEqual,
     areMergedPropsEqual = shallowEqual,
     ...extraOptions
-  } = {},
+  } = {}
 ) {
-  const initMapStateToProps = match(
-    mapStateToProps,
-    mapStateToPropsFactories,
-    'mapStateToProps',
-  )
-  const initMapDispatchToProps = match(
-    mapDispatchToProps,
-    mapDispatchToPropsFactories,
-    'mapDispatchToProps',
-  )
-  const initMergeProps = match(mergeProps, mergePropsFactories, 'mergeProps')
+  const initMapStateToProps = match(mapStateToProps, mapStateToPropsFactories, 'mapStateToProps');
+  const initMapDispatchToProps = match(mapDispatchToProps, mapDispatchToPropsFactories, 'mapDispatchToProps');
+  const initMergeProps = match(mergeProps, mergePropsFactories, 'mergeProps');
 
   return connectHOC(selectorFactory, {
     // used in error messages
     methodName: 'connect',
 
     // used to compute Connect's displayName from the wrapped component's displayName.
-    getDisplayName: (name) => `Connect(${name})`,
+    getDisplayName: name => `Connect(${name})`,
 
     // if mapStateToProps is falsy, the Connect component doesn't subscribe to store state changes
     shouldHandleStateChanges: Boolean(mapStateToProps),
@@ -129,8 +121,8 @@ function connect(
     areMergedPropsEqual,
 
     // any extra options args can override defaults of connect or connectAdvanced
-    ...extraOptions,
-  })
+    ...extraOptions
+  });
 }
 ```
 
@@ -149,7 +141,6 @@ function connect(
 （小程序可以引用页面或父组件的样式，即使启用了样式隔离 `isolated` ，组件仍然可以在局部引用组件所在页面的样式或父组件的样式。）
 
 > 基础库 2.9.2 开始支持，低版本需做[兼容处理](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html)。
-
 
 taro3.x 对应需要下载 taro-ui@3.0.0-alpha.0，taro-ui2 编译会报错
 

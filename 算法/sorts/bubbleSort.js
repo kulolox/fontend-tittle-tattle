@@ -18,6 +18,7 @@ function bubbleSort1(arr) {
   const len = arr.length;
   for (let i = 0; i < len - 1; i++) {
     for (let j = 0; j < len - 1 - i; j++) {
+      // 每次外循环取到一个大值，内循环count-1
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
@@ -32,19 +33,19 @@ function bubbleSort1(arr) {
 // 每次交换都保证找到一个大值，记录最后一次交换位置，此位置后的可以确定为排序过的
 // 注意，此时pos在每次循环开始被重置为0，这意味着如果某次循环为发生交换，则下次循环条件就不成立了，提前结束循环。
 function bubbleSort2() {
-  let i = arr.length - 1;
-  while (i > 0) {
+  let len = arr.length - 1;
+  while (len > 0) {
     let pos = 0;
-    for (let j = 0; j < i; j++) {
+    for (let j = 0; j < len; j++) {
       if (arr[j] > arr[j + 1]) {
         pos = j; // 记录交换位置索引，该索引后的数都是已排序的
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
-    i = pos;
+    len = pos; // 当没有交换行为pos为0，跳出循环
   }
   return arr;
 }
 
 var arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
-console.log(bubbleSort3(arr)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+console.log(bubbleSort2(arr)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]

@@ -7,12 +7,24 @@
 // 最差情况 O(n2)
 // 平均情况 O(n2)
 
+// 普通选择排序，取出列表的某项，依次和该项后的元素比较，交换数据，最终完成排序
+function selectSort1(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+  }
+  return arr;
+}
+
 /**
  * <1>在未排序数据中找到最小（最大）元素。存放到排序序列的起始位置
  * <2>从剩余未排序元素中继续寻找最小（最大元素），然后放到已排序序列的末尾
  * <3>重复2直到所有元素排序完成
  */
-function selectSort(arr) {
+function selectSort2(arr) {
   let length = arr.length;
   let minIndex;
   for (let i = 0; i < length - 1; i++) {
@@ -32,4 +44,4 @@ function selectSort(arr) {
 
 let arr = [2, 5, 10, 7, 10, 32, 90, 9, 11, 1, 1, 10];
 
-console.log(selectSort(arr));
+console.log(selectSort1(arr));
